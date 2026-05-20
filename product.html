@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NEW BALL - 專業瑜伽健身服產品詳情">
+    <meta name="theme-color" content="#4A90D9">
+    <title>產品詳情 - NEW BALL</title>
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+    <link rel="apple-touch-icon" href="icons/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4A90D9',
+                        secondary: '#7BB3E8',
+                        light: '#E8F4FD',
+                        dark: '#1A365D'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #4A90D9;
+            --secondary: #7BB3E8;
+            --light: #E8F4FD;
+            --dark: #1A365D;
+        }
+        
+        * {
+            font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #E8F4FD 0%, #D4EBFC 50%, #E8F4FD 100%);
+        }
+        
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #1A365D 0%, #2D4A6F 50%, #1A365D 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(26, 54, 93, 0.8);
+        }
+        
+        .product-image {
+            transition: all 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4A90D9 0%, #7BB3E8 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(74, 144, 217, 0.4);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .lang-text { display: none; }
+        .lang-text.active { display: inline; }
+        
+        .thumbnail {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+        
+        .thumbnail:hover {
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <span class="text-white font-bold text-lg md:text-xl">NB</span>
+                    </div>
+                    <span class="text-xl md:text-2xl font-bold text-primary">NEW BALL</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-dark dark:text-white font-medium">
+                        <span class="lang-text lang-zh active">首頁</span>
+                        <span class="lang-text lang-en">Home</span>
+                    </a>
+                    <a href="index.html#products" class="nav-link text-dark dark:text-white font-medium">
+                        <span class="lang-text lang-zh active">產品</span>
+                        <span class="lang-text lang-en">Products</span>
+                    </a>
+                    <a href="about.html" class="nav-link text-dark dark:text-white font-medium">
+                        <span class="lang-text lang-zh active">關於我們</span>
+                        <span class="lang-text lang-en">About Us</span>
+                    </a>
+                    <a href="index.html#contact" class="nav-link text-dark dark:text-white font-medium">
+                        <span class="lang-text lang-zh active">聯繫我們</span>
+                        <span class="lang-text lang-en">Contact</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="langSwitch" class="p-2 rounded-lg hover:bg-primary/10 transition-colors">
+                        <span class="text-sm font-medium text-primary">中文</span>
+                    </button>
+                    
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-primary/10 transition-colors">
+                        <svg id="sunIcon" class="w-6 h-6 text-primary hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="moonIcon" class="w-6 h-6 text-primary block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-primary/10">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 glass-effect shadow-xl md:hidden">
+            <div class="p-6">
+                <button id="closeMobileMenu" class="absolute top-4 right-4 p-2">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="mt-12 flex flex-col space-y-6">
+                    <a href="index.html" class="text-lg font-medium text-dark dark:text-white">
+                        <span class="lang-text lang-zh active">首頁</span>
+                        <span class="lang-text lang-en">Home</span>
+                    </a>
+                    <a href="index.html#products" class="text-lg font-medium text-dark dark:text-white">
+                        <span class="lang-text lang-zh active">產品</span>
+                        <span class="lang-text lang-en">Products</span>
+                    </a>
+                    <a href="about.html" class="text-lg font-medium text-dark dark:text-white">
+                        <span class="lang-text lang-zh active">關於我們</span>
+                        <span class="lang-text lang-en">About Us</span>
+                    </a>
+                    <a href="index.html#contact" class="text-lg font-medium text-dark dark:text-white">
+                        <span class="lang-text lang-zh active">聯繫我們</span>
+                        <span class="lang-text lang-en">Contact</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="pt-24 md:pt-28 pb-12 md:pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="productDetail" class="bg-white/70 dark:bg-dark/50 rounded-3xl p-6 md:p-10 shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="pb-12 md:pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-dark dark:text-white mb-8 text-center">
+                <span class="lang-text lang-zh active">相關產品</span>
+                <span class="lang-text lang-en">Related Products</span>
+            </h2>
+            <div id="relatedProducts" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark dark:bg-black py-10 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">NB</span>
+                        </div>
+                        <span class="text-2xl font-bold text-white">NEW BALL</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        <span class="lang-text lang-zh active">專業瑜伽健身服品牌，為您打造舒適、時尚的運動體驗</span>
+                        <span class="lang-text lang-en">Professional yoga fitness wear brand, creating comfortable and stylish sports experiences for you</span>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">
+                        <span class="lang-text lang-zh active">快速鏈接</span>
+                        <span class="lang-text lang-en">Quick Links</span>
+                    </h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="lang-text lang-zh active">首頁</span>
+                            <span class="lang-text lang-en">Home</span>
+                        </a></li>
+                        <li><a href="index.html#products" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="lang-text lang-zh active">產品</span>
+                            <span class="lang-text lang-en">Products</span>
+                        </a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="lang-text lang-zh active">關於我們</span>
+                            <span class="lang-text lang-en">About Us</span>
+                        </a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="lang-text lang-zh active">聯繫我們</span>
+                            <span class="lang-text lang-en">Contact</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">
+                        <span class="lang-text lang-zh active">聯繫方式</span>
+                        <span class="lang-text lang-en">Contact Info</span>
+                    </h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>+852 4425 3521</li>
+                        <li class="break-all">ilkzkuol340173@outlook.com</li>
+                        <li>唐义伟</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 NEW BALL. 
+                    <span class="lang-text lang-zh active">版權所有</span>
+                    <span class="lang-text lang-en">All Rights Reserved</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: '云感紧身瑜伽背心运动内衣防震高强度文胸普拉提跑步户外健身服女', nameEn: 'Cloud-Feel Yoga Sports Bra High Impact', price: 298, category: 'yoga', image: 'images/云感紧身瑜伽背心运动内衣防震高强度文胸普拉提跑步户外健身服女.jpg', material: ' nylon/spandex', care: '冷水手洗，避免暴晒', careEn: 'Cold hand wash, avoid direct sunlight', features: ['高强度防震', '透气排汗', '舒适贴合', '运动支撑'], featuresEn: ['High impact support', 'Breathable & sweat-wicking', 'Comfortable fit', 'Sports support'] },
+            { id: 2, name: '亚马逊新品健身短裤收腹提臀纯色运动高腰无尴尬紧身速干瑜伽短裤', nameEn: 'Amazon New Fitness Shorts High Waist', price: 258, category: 'fitness', image: 'images/亚马逊新品健身短裤收腹提臀纯色运动高腰无尴尬紧身速干瑜伽短裤.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['收腹提臀', '高腰设计', '速干透气', '无尴尬线'], featuresEn: ['Tummy control', 'High waist design', 'Quick-dry', 'No show lines'] },
+            { id: 3, name: '境裸感运动拉链长袖外套健身服宽松高腰显瘦直筒裤瑜伽套装', nameEn: 'Bare-Feel Zipper Jacket Fitness Set', price: 498, category: 'sets', image: 'images/境裸感运动拉链长袖外套健身服宽松高腰显瘦直筒裤瑜伽套装.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['拉链开合', '裸感面料', '套装搭配', '显瘦设计'], featuresEn: ['Zipper closure', 'Bare-feel fabric', 'Matching set', 'Slimming design'] },
+            { id: 4, name: '新款无缝后V腰蜜桃臀塑形训练瑜伽裤运动跑步翘臀美体健身裤', nameEn: 'Seamless V-Waist Yoga Pants Peach Hip', price: 328, category: 'yoga', image: 'images/新款无缝后V腰蜜桃臀塑形训练瑜伽裤运动跑步翘臀美体健身裤.jpg', material: ' seamless nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['无缝工艺', 'V腰设计', '蜜桃臀效果', '塑形训练'], featuresEn: ['Seamless craft', 'V-waist design', 'Peach hip effect', 'Shape training'] },
+            { id: 5, name: '无缝针织瑜伽文胸速干紧身运动跑步健身服吊带交叉美背瑜伽服', nameEn: 'Seamless Knit Yoga Bra Cross Back', price: 268, category: 'yoga', image: 'images/无缝针织瑜伽文胸速干紧身运动跑步健身服吊带交叉美背瑜伽服.jpg', material: ' seamless nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['无缝针织', '交叉美背', '速干面料', '支撑性好'], featuresEn: ['Seamless knit', 'Cross back', 'Quick-dry fabric', 'Good support'] },
+            { id: 6, name: '无袖镂空瑜伽连体运动健身瑜伽服含胸垫蜜桃臀运动背心连体衣', nameEn: 'Sleeveless Hollow Yoga Jumpsuit', price: 428, category: 'sets', image: 'images/无袖镂空瑜伽连体运动健身瑜伽服含胸垫蜜桃臀运动背心连体衣.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['无袖设计', '镂空元素', '含胸垫', '蜜桃臀'], featuresEn: ['Sleeveless design', 'Hollow elements', 'With chest pad', 'Peach hip'] },
+            { id: 7, name: '欧美塑形连体拉链瑜伽服一体式收腹紧身镂空运动美背连体衣瑜伽裤', nameEn: 'European Body Shaping Zipper Jumpsuit', price: 488, category: 'sets', image: 'images/欧美塑形连体拉链瑜伽服一体式收腹紧身镂空运动美背连体衣瑜伽裤.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['拉链设计', '收腹塑形', '镂空美背', '一体式'], featuresEn: ['Zipper design', 'Tummy control', 'Hollow back', 'One-piece'] },
+            { id: 8, name: '欧美夏季纯色拉链短袖修身瑜伽服连体服女舞蹈健身紧身运动连体衣', nameEn: 'European Summer Zipper Short Sleeve', price: 458, category: 'sets', image: 'images/欧美夏季纯色拉链短袖修身瑜伽服连体服女舞蹈健身紧身运动连体衣.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['短袖设计', '拉链开合', '修身剪裁', '多场景'], featuresEn: ['Short sleeve', 'Zipper closure', 'Slim fit', 'Multi-scene'] },
+            { id: 9, name: '欧美拉链裸感长袖瑜伽喇叭裤连体衣跑步健身服运动潮流连体紧身衣', nameEn: 'European Flare Yoga Jumpsuit', price: 518, category: 'sets', image: 'images/欧美拉链裸感长袖瑜伽喇叭裤连体衣跑步健身服运动潮流连体紧身衣.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['喇叭裤腿', '裸感面料', '潮流设计', '运动休闲'], featuresEn: ['Flare leg', 'Bare-feel fabric', 'Trendy design', 'Sports casual'] },
+            { id: 10, name: '欧美新款开领拉链带胸垫短袖连体服美背健身运动连体衣紧身瑜伽服', nameEn: 'European New Open Collar Zipper', price: 478, category: 'sets', image: 'images/欧美新款开领拉链带胸垫短袖连体服美背健身运动连体衣紧身瑜伽服.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['开领设计', '带胸垫', '美背镂空', '紧身剪裁'], featuresEn: ['Open collar', 'With chest pad', 'Hollow back', 'Tight fit'] },
+            { id: 11, name: '欧美新款开领拉链短袖连体服舞蹈健身运动连体衣性感紧身瑜伽服女', nameEn: 'European Sexy Zipper Jumpsuit', price: 468, category: 'sets', image: 'images/欧美新款开领拉链短袖连体服舞蹈健身运动连体衣性感紧身瑜伽服女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['开领设计', '拉链开合', '性感剪裁', '多色可選'], featuresEn: ['Open collar', 'Zipper closure', 'Sexy fit', 'Multiple colors'] },
+            { id: 12, name: '欧美无缝三分健身短裤高腰蜜桃提臀三段腰运动短裤紧身速干瑜伽裤', nameEn: 'European Seamless 3/4 Shorts', price: 288, category: 'fitness', image: 'images/欧美无缝三分健身短裤高腰蜜桃提臀三段腰运动短裤紧身速干瑜伽裤.jpg', material: ' seamless nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['无缝工艺', '三分长度', '蜜桃提臀', '速干透气'], featuresEn: ['Seamless craft', '3/4 length', 'Peach hip lift', 'Quick-dry'] },
+            { id: 13, name: '欧美瑜伽裤纯色长袖亲肤透气美背运动短袖修身显瘦健身裤套装', nameEn: 'European Yoga Set Long Sleeve', price: 428, category: 'sets', image: 'images/欧美瑜伽裤纯色长袖亲肤透气美背运动短袖修身显瘦健身裤套装.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['长袖短袖套裝', '亲肤透气', '美背设计', '修身显瘦'], featuresEn: ['Long + short sleeve set', 'Skin-friendly', 'Hollow back', 'Slim fit'] },
+            { id: 14, name: '欧美紧身高强度运动美背蜜桃臀瑜伽连体衣拉链裸感紧身连体健身服', nameEn: 'European High Impact Zipper Jumpsuit', price: 498, category: 'sets', image: 'images/欧美紧身高强度运动美背蜜桃臀瑜伽连体衣拉链裸感紧身连体健身服.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['高强度支撑', '拉链设计', '蜜桃臀', '裸感面料'], featuresEn: ['High impact', 'Zipper design', 'Peach hip', 'Bare-feel fabric'] },
+            { id: 15, name: '欧美纯色亲肤美背带胸垫运动背心口袋瑜伽裤短裤健身瑜伽服套装女', nameEn: 'European Sports Set with Pockets', price: 438, category: 'sets', image: 'images/欧美纯色亲肤美背带胸垫运动背心口袋瑜伽裤短裤健身瑜伽服套装女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['带口袋设计', '带胸垫', '美背吊带', '套裝搭配'], featuresEn: ['With pockets', 'With chest pad', 'Hollow back tank', 'Matching set'] },
+            { id: 16, name: '欧美蜜桃臀高腰瑜伽裤女修身提臀紧身裤无缝针织跑步运动健身短裤', nameEn: 'European Peach Hip Yoga Shorts', price: 298, category: 'fitness', image: 'images/欧美蜜桃臀高腰瑜伽裤女修身提臀紧身裤无缝针织跑步运动健身短裤.jpg', material: ' seamless nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['无缝针织', '高腰设计', '蜜桃提臀', '跑步适用'], featuresEn: ['Seamless knit', 'High waist', 'Peach hip lift', 'Running suitable'] },
+            { id: 17, name: '欧美镂空美背短袖拉链连体衣蜜桃臀运动健身含胸垫连体衣瑜伽服女', nameEn: 'European Hollow Back Jumpsuit', price: 488, category: 'sets', image: 'images/欧美镂空美背短袖拉链连体衣蜜桃臀运动健身含胸垫连体衣瑜伽服女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['镂空美背', '短袖设计', '拉链开合', '含胸垫'], featuresEn: ['Hollow back', 'Short sleeve', 'Zipper closure', 'With chest pad'] },
+            { id: 18, name: '欧美高腰裸感亲肤紧身裤跑步运动健身裤普拉提性感修身纯色瑜伽裤', nameEn: 'European Bare-Feel Yoga Pants', price: 318, category: 'yoga', image: 'images/欧美高腰裸感亲肤紧身裤跑步运动健身裤普拉提性感修身纯色瑜伽裤.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['高腰设计', '裸感亲肤', '普拉提适用', '修身剪裁'], featuresEn: ['High waist', 'Bare-feel fabric', 'Pilates suitable', 'Slim fit'] },
+            { id: 19, name: '现货亚马逊新品纯色三段腰蜜桃臀提臀透气跑步健身裤无缝瑜伽长裤', nameEn: 'Amazon New 3-Section Waist Yoga Pants', price: 338, category: 'yoga', image: 'images/现货亚马逊新品纯色三段腰蜜桃臀提臀透气跑步健身裤无缝瑜伽长裤.jpg', material: ' seamless nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['三段腰设计', '蜜桃提臀', '透气面料', '无缝工艺'], featuresEn: ['3-section waist', 'Peach hip lift', 'Breathable', 'Seamless craft'] },
+            { id: 20, name: '现货欧美新款无缝褶皱蜜桃紧身翘臀瑜伽套装运动跑步健身瑜伽服女', nameEn: 'European Seamless Ruffle Yoga Set', price: 458, category: 'sets', image: 'images/现货欧美新款无缝褶皱蜜桃紧身翘臀瑜伽套装运动跑步健身瑜伽服女.jpg', material: ' seamless nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['褶皱设计', '无缝工艺', '蜜桃翘臀', '套装搭配'], featuresEn: ['Ruffle design', 'Seamless craft', 'Peach hip lift', 'Matching set'] },
+            { id: 21, name: '现货裸感紧身瑜伽裤撞色背心运动文胸交叉高腰阔腿裤女运动健身裤', nameEn: 'Bare-Feel Yoga Pants Color Block Set', price: 418, category: 'sets', image: 'images/现货裸感紧身瑜伽裤撞色背心运动文胸交叉高腰阔腿裤女运动健身裤.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['撞色设计', '裸感面料', '阔腿剪裁', '套装组合'], featuresEn: ['Color block', 'Bare-feel fabric', 'Flare leg', 'Set combo'] },
+            { id: 22, name: '纯色单肩美背瑜伽文胸裸感聚拢运动内衣不规则肩带运动背心女', nameEn: 'One Shoulder Yoga Bra', price: 248, category: 'yoga', image: 'images/纯色单肩美背瑜伽文胸裸感聚拢运动内衣不规则肩带运动背心女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['单肩设计', '美背镂空', '聚拢效果', '不规则肩带'], featuresEn: ['One shoulder', 'Hollow back', 'Gather effect', 'Irregular strap'] },
+            { id: 23, name: '缝紧身亲肤健身裤交叉腰提臀短裤高腰蜜桃臀三分紧身瑜伽裤', nameEn: 'Cross Waist Fitness Shorts', price: 278, category: 'fitness', image: 'images/缝紧身亲肤健身裤交叉腰提臀短裤高腰蜜桃臀三分紧身瑜伽裤.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['交叉腰设计', '亲肤面料', '提臀效果', '三分长度'], featuresEn: ['Cross waist', 'Skin-friendly', 'Hip lift effect', '3/4 length'] },
+            { id: 24, name: '美跨境瑜伽裤薄款亲肤高腰直筒裤宽松显瘦瑜伽服运动户外健身服', nameEn: 'Cross-Border Yoga Pants Straight Leg', price: 318, category: 'yoga', image: 'images/美跨境瑜伽裤薄款亲肤高腰直筒裤宽松显瘦瑜伽服运动户外健身服.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['薄款面料', '直筒剪裁', '高腰设计', '户外适用'], featuresEn: ['Thin fabric', 'Straight leg', 'High waist', 'Outdoor suitable'] },
+            { id: 25, name: '色速干吊带美背背心一片式绑带长袖锤感瑜伽健身长裤瑜伽服', nameEn: 'Colorful Quick-Dry Yoga Set', price: 458, category: 'sets', image: 'images/色速干吊带美背背心一片式绑带长袖锤感瑜伽健身长裤瑜伽服.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['速干面料', '绑带设计', '锤感长裤', '套装组合'], featuresEn: ['Quick-dry fabric', 'Tie design', 'Hammer feel pants', 'Set combo'] },
+            { id: 26, name: '跨境 欧美运动裸感亲肤纯色运动T恤弹力短袖瑜伽裤高腰健身套装女', nameEn: 'European Sports T-Shirt Fitness Set', price: 438, category: 'sets', image: 'images/跨境 欧美运动裸感亲肤纯色运动T恤弹力短袖瑜伽裤高腰健身套装女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['弹力T恤', '裸感面料', '高腰瑜伽裤', '套装搭配'], featuresEn: ['Stretch T-shirt', 'Bare-feel fabric', 'High waist yoga pants', 'Matching set'] },
+            { id: 27, name: '跨境欧美T恤速干 裸感亲肤瑜伽服短袖修身健身上衣户外跑步运动服', nameEn: 'European Quick-Dry T-Shirt', price: 268, category: 'fitness', image: 'images/跨境欧美T恤速干 裸感亲肤瑜伽服短袖修身健身上衣户外跑步运动服.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['速干面料', '裸感亲肤', '修身剪裁', '户外跑步'], featuresEn: ['Quick-dry fabric', 'Bare-feel', 'Slim fit', 'Outdoor running'] },
+            { id: 28, name: '跨境欧美网红运动内衣聚拢交叉性感美背吊带瑜伽文胸跑步健身背心', nameEn: 'European Popular Sports Bra', price: 258, category: 'yoga', image: 'images/跨境欧美网红运动内衣聚拢交叉性感美背吊带瑜伽文胸跑步健身背心.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['聚拢效果', '交叉肩带', '美背设计', '网红同款'], featuresEn: ['Gather effect', 'Cross straps', 'Hollow back', 'Popular style'] },
+            { id: 29, name: '跨境磨毛长裤垂感侧口袋阔腿裤宽松休闲裤女运动健身松紧抽绳长裤', nameEn: 'Cross-Border Brushed Flare Pants', price: 358, category: 'yoga', image: 'images/跨境磨毛长裤垂感侧口袋阔腿裤宽松休闲裤女运动健身松紧抽绳长裤.jpg', material: ' brushed nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['磨毛面料', '阔腿剪裁', '侧口袋', '抽绳设计'], featuresEn: ['Brushed fabric', 'Flare leg', 'Side pockets', 'Drawstring design'] },
+            { id: 30, name: '跨境纯色双面磨毛紧身高腰高弹透气瑜伽裤运动跑步健身瑜伽服', nameEn: 'Cross-Border Double-Sided Fleece Yoga', price: 338, category: 'yoga', image: 'images/跨境纯色双面磨毛紧身高腰高弹透气瑜伽裤运动跑步健身瑜伽服.jpg', material: ' double-sided brushed nylon', care: '冷水手洗', careEn: 'Cold hand wash', features: ['双面磨毛', '高弹面料', '高腰设计', '透气舒适'], featuresEn: ['Double-sided fleece', 'High stretch', 'High waist', 'Breathable'] },
+            { id: 31, name: '跨境纯色带口袋瑜伽裤运动健身三分裤透气高腰收腹瑜伽短裤女', nameEn: 'Cross-Border Pocket Yoga Shorts', price: 278, category: 'fitness', image: 'images/跨境纯色带口袋瑜伽裤运动健身三分裤透气高腰收腹瑜伽短裤女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['口袋设计', '三分长度', '收腹功能', '透气面料'], featuresEn: ['Pocket design', '3/4 length', 'Tummy control', 'Breathable fabric'] },
+            { id: 32, name: '跨境纯色裸感亲肤运动瑜伽服修身显瘦弹力T恤健身短裤套装女', nameEn: 'Cross-Border Bare-Feel Sports Set', price: 428, category: 'sets', image: 'images/跨境纯色裸感亲肤运动瑜伽服修身显瘦弹力T恤健身短裤套装女.jpg', material: ' nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['裸感面料', '弹力T恤', '健身短裤', '套装组合'], featuresEn: ['Bare-feel fabric', 'Stretch T-shirt', 'Fitness shorts', 'Set combo'] },
+            { id: 33, name: '高腰网洞提臀弹力紧身健美打底塑形运动裤无缝瑜伽裤', nameEn: 'High Waist Mesh Yoga Pants', price: 298, category: 'yoga', image: 'images/高腰网洞提臀弹力紧身健美打底塑形运动裤无缝瑜伽裤.jpg', material: ' mesh nylon/spandex', care: '冷水手洗', careEn: 'Cold hand wash', features: ['网洞设计', '高腰提臀', '无缝工艺', '健美塑形'], featuresEn: ['Mesh design', 'High waist hip lift', 'Seamless craft', 'Body shaping'] }
+        ];
+
+        let currentLang = 'zh';
+
+        function getProductById(id) {
+            return products.find(p => p.id === parseInt(id));
+        }
+
+        function getRelatedProducts(currentProduct) {
+            return products
+                .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+                .slice(0, 4);
+        }
+
+        function renderProductDetail(product) {
+            const detail = document.getElementById('productDetail');
+            document.title = `${currentLang === 'zh' ? product.name : product.nameEn} - NEW BALL`;
+            
+            detail.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <div>
+                        <div class="aspect-square rounded-2xl overflow-hidden bg-gray-100 dark:bg-dark mb-4">
+                            <img src="${product.image}" alt="${currentLang === 'zh' ? product.name : product.nameEn}" 
+                                 class="w-full h-full object-cover product-image"
+                                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23E8F4FD%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%234A90D9%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${product.id}%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                                ${product.category === 'yoga' ? (currentLang === 'zh' ? '瑜伽服' : 'Yoga') : 
+                                  product.category === 'fitness' ? (currentLang === 'zh' ? '健身服' : 'Fitness') : 
+                                  (currentLang === 'zh' ? '套裝' : 'Sets')}
+                            </span>
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-dark dark:text-white mb-4">
+                            ${currentLang === 'zh' ? product.name : product.nameEn}
+                        </h1>
+                        <div class="text-3xl md:text-4xl font-bold text-primary mb-6">$${product.price}</div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold text-dark dark:text-white mb-3">
+                                <span class="lang-text lang-zh active">產品特點</span>
+                                <span class="lang-text lang-en">Product Features</span>
+                            </h3>
+                            <ul class="space-y-2">
+                                ${(currentLang === 'zh' ? product.features : product.featuresEn).map(f => `
+                                    <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                        <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        ${f}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold text-dark dark:text-white mb-3">
+                                <span class="lang-text lang-zh active">產品資訊</span>
+                                <span class="lang-text lang-en">Product Information</span>
+                            </h3>
+                            <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                                <p><span class="font-medium">
+                                    <span class="lang-text lang-zh active">面料：</span>
+                                    <span class="lang-text lang-en">Material：</span>
+                                </span> ${product.material}</p>
+                                <p><span class="font-medium">
+                                    <span class="lang-text lang-zh active">洗滌方式：</span>
+                                    <span class="lang-text lang-en">Care：</span>
+                                </span> ${currentLang === 'zh' ? product.care : product.careEn}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="index.html#contact" class="btn-primary px-8 py-3 rounded-full text-white font-semibold text-center">
+                                <span class="lang-text lang-zh active">咨詢價格</span>
+                                <span class="lang-text lang-en">Inquire Price</span>
+                            </a>
+                            <a href="index.html#products" class="px-8 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-colors text-center">
+                                <span class="lang-text lang-zh active">返回產品列表</span>
+                                <span class="lang-text lang-en">Back to Products</span>
+                            </a>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center space-x-4 text-gray-600 dark:text-gray-300">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                    </svg>
+                                    <span class="lang-text lang-zh active">全球發貨</span>
+                                    <span class="lang-text lang-en">Global Shipping</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                    </svg>
+                                    <span class="lang-text lang-zh active">品質保證</span>
+                                    <span class="lang-text lang-en">Quality Guarantee</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRelatedProducts(product) {
+            const related = getRelatedProducts(product);
+            const container = document.getElementById('relatedProducts');
+            
+            container.innerHTML = related.map(p => `
+                <a href="product.html?id=${p.id}" class="product-card bg-white/70 dark:bg-dark/50 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="${p.image}" alt="${currentLang === 'zh' ? p.name : p.nameEn}" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23E8F4FD%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%234A90D9%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${p.id}%3C/text%3E%3C/svg%3E'">
+                        <div class="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                            $${p.price}
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-dark dark:text-white text-sm md:text-base line-clamp-2">
+                            ${currentLang === 'zh' ? p.name : p.nameEn}
+                        </h3>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const product = getProductById(productId);
+            
+            if (product) {
+                renderProductDetail(product);
+                renderRelatedProducts(product);
+            } else {
+                window.location.href = 'index.html';
+            }
+            
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+
+            const langSwitch = document.getElementById('langSwitch');
+            langSwitch.addEventListener('click', () => {
+                currentLang = currentLang === 'zh' ? 'en' : 'zh';
+                langSwitch.textContent = currentLang === 'zh' ? 'EN' : '中文';
+                
+                document.querySelectorAll('.lang-text').forEach(el => {
+                    el.classList.remove('active');
+                    if (el.classList.contains(`lang-${currentLang}`)) {
+                        el.classList.add('active');
+                    }
+                });
+                
+                if (product) {
+                    renderProductDetail(product);
+                    renderRelatedProducts(product);
+                }
+            });
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
